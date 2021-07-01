@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TrackerLibrary
+namespace TrackerLibrary.Models
 {
     public class TeamModel
     {
@@ -14,6 +14,10 @@ namespace TrackerLibrary
         /// Team name
         /// </summary>
         public string TeamName { get; set; }
+        /// <summary>
+        /// Database id of the team
+        /// </summary>
+        public int id { get; set; }
 
         public TeamModel()
         {

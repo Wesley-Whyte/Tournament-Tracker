@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TrackerLibrary
+namespace TrackerLibrary.Models
 {
     public class PersonModel
     {
+        /// <summary>
+        /// Database id of the person
+        /// </summary>
+        public int id { get; set; }
         /// <summary>
         /// First name of participant/team member
         /// </summary>
@@ -22,5 +26,17 @@ namespace TrackerLibrary
         /// Cellphone number of participant/team member
         /// </summary>
         public string CellPhoneNumber { get; set; }
+
+        
+
+        public string FullName
+        {
+            get 
+            {
+                return $"{FirstName} {LastName}"; 
+            }
+            
+        }
+
     }
 }

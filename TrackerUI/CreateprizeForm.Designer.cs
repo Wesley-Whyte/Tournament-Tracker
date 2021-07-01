@@ -47,7 +47,7 @@
             this.createPrizeLabel.Font = new System.Drawing.Font("Segoe UI Light", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createPrizeLabel.Location = new System.Drawing.Point(37, 58);
             this.createPrizeLabel.Name = "createPrizeLabel";
-            this.createPrizeLabel.Size = new System.Drawing.Size(247, 60);
+            this.createPrizeLabel.Size = new System.Drawing.Size(243, 59);
             this.createPrizeLabel.TabIndex = 1;
             this.createPrizeLabel.Text = "Create Prize";
             // 
@@ -89,6 +89,7 @@
             this.prizeAmountTextBox.Name = "prizeAmountTextBox";
             this.prizeAmountTextBox.Size = new System.Drawing.Size(226, 43);
             this.prizeAmountTextBox.TabIndex = 7;
+            this.prizeAmountTextBox.Text = "0";
             // 
             // prizeAmountLabel
             // 
@@ -105,6 +106,7 @@
             this.prizePercentageTextBox.Name = "prizePercentageTextBox";
             this.prizePercentageTextBox.Size = new System.Drawing.Size(226, 43);
             this.prizePercentageTextBox.TabIndex = 9;
+            this.prizePercentageTextBox.Text = "0";
             // 
             // prizePercentageLabel
             // 
@@ -127,6 +129,7 @@
             this.createPrizeButton.TabIndex = 10;
             this.createPrizeButton.Text = "Create Prize";
             this.createPrizeButton.UseVisualStyleBackColor = true;
+            this.createPrizeButton.Click += new System.EventHandler(this.createPrizeButton_Click);
             // 
             // orLabel
             // 
