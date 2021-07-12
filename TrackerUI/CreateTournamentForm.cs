@@ -49,6 +49,19 @@ namespace TrackerUI
             }
         }
 
+        private void removePrizeButton_Click(object sender, EventArgs e)
+        {
+            PrizeModel prize = (PrizeModel)prizesListBox.SelectedItem;
+
+            if (prize != null)
+            {
+                selectedPrizes.Remove(prize);
+                refreshData();
+
+            }
+
+        }
+
         private void createPrizeButton_Click(object sender, EventArgs e)
         {
             CreateprizeForm form = new CreateprizeForm(this);
@@ -63,7 +76,48 @@ namespace TrackerUI
 
         }
 
-        public void refreshData()
+        private void createTournamentButton_Click(object sender, EventArgs e)
+        {
+            TournamentModel tour = new TournamentModel();
+
+            if (validateTournament())
+            {
+                tour.TournamentName = tournamentNametextBox.Text;
+                tour.EntryFee = Decimal.Parse(entryFeeTextBox.Text);
+                tour.EnteredTeams = selectedTeams;
+                tour.Prizes = selectedPrizes;
+            }
+
+            TournamentLogic.createRounds(tour);
+
+            GlobalConfig.Connection.createTournament(tour);
+
+            TournamentViewerForm tournamentViewerForm = new TournamentViewerForm(tour);
+            this.Close();
+
+        }
+
+        private bool validateTournament()
+        {
+            decimal fee = 0;
+            bool output = true;
+
+            if (tournamentNametextBox.Text.Length < 1)
+            {
+                output = false;
+            }
+            if (Decimal.TryParse(entryFeeTextBox.Text,out fee))
+            {
+                if (fee < 1)
+                {
+                    output = false;
+                }
+            }
+
+            return output;
+        }
+
+        private void refreshData()
         {
             selectTeamComboBox.DataSource = null;
             selectTeamComboBox.DataSource = availableTeams;
@@ -91,5 +145,7 @@ namespace TrackerUI
             selectedTeams.Add(model);
             refreshData();
         }
+
+        
     }
 }

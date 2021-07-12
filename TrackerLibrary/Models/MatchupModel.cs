@@ -18,6 +18,8 @@ namespace TrackerLibrary.Models
         /// Represents the round this matchup wan in
         /// </summary>
         public int MatchupRound { get; set; }
+
+        public int id { get; set; }
         public MatchupModel()
         {
             Entries = new List<MatchupEntryModel>();

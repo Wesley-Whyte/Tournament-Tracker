@@ -40,5 +40,15 @@ namespace TrackerLibrary.DataAccess
         {
             throw new NotImplementedException();
         }
+
+        public TournamentModel createTournament(TournamentModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<TournamentModel> getTournamentAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

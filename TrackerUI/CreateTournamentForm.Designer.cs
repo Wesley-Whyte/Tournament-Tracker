@@ -207,6 +207,7 @@
             this.removePrizeButton.TabIndex = 15;
             this.removePrizeButton.Text = "Remove Selected";
             this.removePrizeButton.UseVisualStyleBackColor = true;
+            this.removePrizeButton.Click += new System.EventHandler(this.removePrizeButton_Click);
             // 
             // createTournamentButton
             // 
@@ -220,6 +221,7 @@
             this.createTournamentButton.TabIndex = 16;
             this.createTournamentButton.Text = "Create Tournament";
             this.createTournamentButton.UseVisualStyleBackColor = true;
+            this.createTournamentButton.Click += new System.EventHandler(this.createTournamentButton_Click);
             // 
             // CreateTournamentForm
             // 

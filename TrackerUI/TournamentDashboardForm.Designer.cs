@@ -41,7 +41,7 @@
             this.tournamentDashboardLabel.Font = new System.Drawing.Font("Segoe UI Light", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tournamentDashboardLabel.Location = new System.Drawing.Point(12, 44);
             this.tournamentDashboardLabel.Name = "tournamentDashboardLabel";
-            this.tournamentDashboardLabel.Size = new System.Drawing.Size(460, 60);
+            this.tournamentDashboardLabel.Size = new System.Drawing.Size(445, 59);
             this.tournamentDashboardLabel.TabIndex = 2;
             this.tournamentDashboardLabel.Text = "Tournament DashBoard";
             // 
@@ -75,6 +75,7 @@
             this.loadTournamentButton.TabIndex = 11;
             this.loadTournamentButton.Text = "Load Tournament";
             this.loadTournamentButton.UseVisualStyleBackColor = true;
+            this.loadTournamentButton.Click += new System.EventHandler(this.loadTournamentButton_Click);
             // 
             // createTournamentButton
             // 
@@ -88,6 +89,7 @@
             this.createTournamentButton.TabIndex = 12;
             this.createTournamentButton.Text = "Create Tournament";
             this.createTournamentButton.UseVisualStyleBackColor = true;
+            this.createTournamentButton.Click += new System.EventHandler(this.createTournamentButton_Click);
             // 
             // TournamentDashboardForm
             // 
