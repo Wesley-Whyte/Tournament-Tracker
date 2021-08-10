@@ -20,13 +20,28 @@ namespace TrackerLibrary.Models
         /// <param name="name"></param>
         /// <param name="amount"></param>
         /// <param name="percentage"></param>
-        public PrizeModel(string number, string name, string amount, string percentage)
+        public PrizeModel(string number, string name, string prize, PrizeType prizeType)
         {
             PlaceNumber = Int32.Parse(number);
             PlaceName = name;
-            PrizeAmount = decimal.Parse(amount);
-            PrizePercentage = double.Parse(percentage);
+            Type = prizeType;
+
+            switch (prizeType)
+            {
+                case PrizeType.Amount:
+                    PrizeAmount = decimal.Parse(prize);
+                    break;
+                case PrizeType.Percentage:
+                    PrizePercentage = double.Parse(prize);
+                    break;
+                default:
+                    break;
+            }
+            
+            
         }
+
+        public PrizeType Type { get; set; }
         /// <summary>
         /// Database id of the model
         /// </summary>

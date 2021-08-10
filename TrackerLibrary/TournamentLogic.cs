@@ -24,6 +24,90 @@ namespace TrackerLibrary
             //create other rounds
             createOtherRounds(model, roundsNum);
         }
+
+        public static decimal calculatePrizes(this TournamentModel model, PrizeModel prize)
+        {
+            decimal totalIncome = model.EnteredTeams.Count * model.EntryFee;
+            decimal output;
+
+            if (prize.Type == PrizeType.Amount)
+            {
+                output = prize.PrizeAmount;
+                return output;
+            }
+            else
+            {
+                output = totalIncome * Convert.ToDecimal(prize.PrizePercentage / 100);
+                return output;
+            }
+            
+
+        }
+        
+        public static void sortOutByes(this TournamentModel model)
+        {
+            foreach (MatchupModel matchup in model.Rounds[0])
+            {
+                if (matchup.Entries.Count < 2)
+                {
+                    matchup.Winner = matchup.Entries[0].TeamCompeting;
+                    matchup.Winnerid = matchup.Entries[0].TeamCompetingid;  
+                    GlobalConfig.Connection.updateMatchup(matchup);
+                    if (model.Rounds.Count != 1)
+                    {
+                        model.advanceWinners(1);
+                    }
+                    else
+                    {
+                        model.completeTournament();
+                    }
+                }
+            }
+            
+        }
+
+        public static void advanceWinners(this TournamentModel model,int currRound)
+        {
+            foreach (MatchupModel matchup in model.Rounds[currRound])
+            {
+                foreach (MatchupEntryModel entry in matchup.Entries)
+                {
+                    if (entry.ParentMatcup.Winner != null)
+                    {
+                        entry.TeamCompeting = entry.ParentMatcup.Winner;
+                        entry.TeamCompetingid = entry.ParentMatcup.Winnerid;
+                        GlobalConfig.Connection.updateMatchupEntry(entry);
+                    }
+                }
+            }
+        }
+
+        public static void declareWinner(this MatchupModel model)
+        {
+            if (model.Entries[0].Score == model.Entries[1].Score)
+            {
+                throw new Exception("Tournaments don't accept draws.");
+            }
+            else
+            {
+                if (model.Entries[0].Score > model.Entries[1].Score)
+                {
+                    model.Winner = model.Entries[0].TeamCompeting;
+                    model.Winnerid = model.Entries[0].TeamCompeting.id;
+                }
+                else
+                {
+                    model.Winner = model.Entries[1].TeamCompeting;
+                    model.Winnerid = model.Entries[1].TeamCompeting.id;
+                }
+                foreach (MatchupEntryModel entry in model.Entries)
+                {
+                    GlobalConfig.Connection.updateMatchupEntryScore(entry);
+                }
+                GlobalConfig.Connection.updateMatchup(model);
+            }
+            
+        }
         /// <summary>
         /// Randomizes the order of a list of teams passed as a parameter
         /// </summary>

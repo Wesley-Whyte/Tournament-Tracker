@@ -90,6 +90,7 @@
       <DependentUpon>CreateTournamentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IPrizeRequester.cs" />
+    <Compile Include="IReturnToDashboard.cs" />
     <Compile Include="ITeamRequester.cs" />
     <Compile Include="TournamentDashboardForm.cs">
       <SubType>Form</SubType>

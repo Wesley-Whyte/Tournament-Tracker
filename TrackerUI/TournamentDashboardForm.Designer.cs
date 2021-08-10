@@ -58,7 +58,7 @@
             // loadExistingTournamentComboBox
             // 
             this.loadExistingTournamentComboBox.FormattingEnabled = true;
-            this.loadExistingTournamentComboBox.Location = new System.Drawing.Point(67, 175);
+            this.loadExistingTournamentComboBox.Location = new System.Drawing.Point(70, 197);
             this.loadExistingTournamentComboBox.Name = "loadExistingTournamentComboBox";
             this.loadExistingTournamentComboBox.Size = new System.Drawing.Size(351, 45);
             this.loadExistingTournamentComboBox.TabIndex = 4;
@@ -69,7 +69,7 @@
             this.loadTournamentButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.loadTournamentButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.loadTournamentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loadTournamentButton.Location = new System.Drawing.Point(110, 255);
+            this.loadTournamentButton.Location = new System.Drawing.Point(110, 281);
             this.loadTournamentButton.Name = "loadTournamentButton";
             this.loadTournamentButton.Size = new System.Drawing.Size(265, 48);
             this.loadTournamentButton.TabIndex = 11;
@@ -83,7 +83,7 @@
             this.createTournamentButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.createTournamentButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.createTournamentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createTournamentButton.Location = new System.Drawing.Point(103, 343);
+            this.createTournamentButton.Location = new System.Drawing.Point(110, 360);
             this.createTournamentButton.Name = "createTournamentButton";
             this.createTournamentButton.Size = new System.Drawing.Size(278, 48);
             this.createTournamentButton.TabIndex = 12;
@@ -96,7 +96,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(478, 462);
+            this.ClientSize = new System.Drawing.Size(478, 442);
             this.Controls.Add(this.createTournamentButton);
             this.Controls.Add(this.loadTournamentButton);
             this.Controls.Add(this.loadExistingTournamentComboBox);

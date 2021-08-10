@@ -17,7 +17,13 @@ namespace TrackerUI
     public partial class CreateprizeForm : Form
     {
         IPrizeRequester callingForm;
+        PrizeType prizeType;
+        string _prize;
 
+        public CreateprizeForm()
+        {
+            InitializeComponent();
+        }
         public CreateprizeForm(IPrizeRequester caller)
         {
             InitializeComponent();
@@ -29,7 +35,7 @@ namespace TrackerUI
             if (validateForm())
             {
                 PrizeModel prize = new PrizeModel(placeNumberTextBox.Text, placeNameTextBox.Text,
-                                                  prizeAmountTextBox.Text, prizePercentageTextBox.Text);
+                                                  _prize, prizeType);
 
                 
                 GlobalConfig.Connection.createPrize(prize);
@@ -107,17 +113,78 @@ namespace TrackerUI
             bool isPrizeAmountValid = decimal.TryParse(prizeAmountTextBox.Text, out prizeAmount);
             bool isPrizePercentageValid = double.TryParse(prizePercentageTextBox.Text, out prizePercentage);
 
-            if (!isPrizeAmountValid || !isPrizePercentageValid)
+            if (prizeAmountTextBox.Text.Length > 0 && prizePercentageTextBox.Text.Length > 0)
             {
-                output = false;
+                output = false; 
             }
-            if (prizeAmount <= 0 && prizePercentage <= 0)
+            else
             {
-                output = false;
+
+                if (isPrizeAmountValid)
+                {
+                    prizeType = PrizeType.Amount;
+                }
+
+                if (!isPrizePercentageValid)
+                {
+                    prizeType = PrizeType.Percentage;
+                }
+
+                switch (prizeType)
+                {
+                    case PrizeType.Amount:
+                        if (prizeAmount <= 0)
+                        {
+                            output = false;
+                        }
+                        else
+                        {
+                            _prize = prizeAmountTextBox.Text;
+                        }
+                        break;
+                    case PrizeType.Percentage:
+                        if (prizePercentage <= 0)
+                        {
+                            output = false;
+                        }
+                        else
+                        {
+                            _prize = prizePercentageTextBox.Text;
+                        }
+                        break;
+                    default:
+                        output = false;
+                        break;
+                }
             }
+            
 
 
             return output;
+        }
+
+        private void prizeAmountTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (prizeAmountTextBox.Text.Length > 0)
+            {
+                prizePercentageTextBox.Enabled = false;
+            }
+            else
+            {
+                prizePercentageTextBox.Enabled = true;
+            }
+        }
+
+        private void prizePercentageTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (prizePercentageTextBox.Text.Length > 0)
+            {
+                prizeAmountTextBox.Enabled = false;
+            }
+            else
+            {
+                prizeAmountTextBox.Enabled = true;
+            }
         }
     }
 }

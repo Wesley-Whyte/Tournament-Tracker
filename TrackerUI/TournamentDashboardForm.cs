@@ -12,7 +12,7 @@ using TrackerLibrary;
 
 namespace TrackerUI
 {
-    public partial class TournamentDashboardForm : Form
+    public partial class TournamentDashboardForm : Form, IReturnToDashboard 
     {
         List<TournamentModel> tournaments = GlobalConfig.Connection.getTournamentAll();
 
@@ -25,7 +25,7 @@ namespace TrackerUI
         private void loadTournamentButton_Click(object sender, EventArgs e)
         {
             TournamentModel tournament = (TournamentModel)loadExistingTournamentComboBox.SelectedItem;
-            TournamentViewerForm tournamentViewerForm = new TournamentViewerForm(tournament);
+            TournamentViewerForm tournamentViewerForm = new TournamentViewerForm(tournament, this);
             tournamentViewerForm.Show();
             this.Hide();
         }
@@ -34,14 +34,21 @@ namespace TrackerUI
         {
             loadExistingTournamentComboBox.DataSource = null;
             loadExistingTournamentComboBox.DataSource = tournaments;
-            loadExistingTournamentComboBox.DisplayMember = "TournamentName";
+            loadExistingTournamentComboBox.DisplayMember = "TournamentDisplay";
         }
 
         private void createTournamentButton_Click(object sender, EventArgs e)
         {
-            CreateTournamentForm createTournamentForm = new CreateTournamentForm();
+            CreateTournamentForm createTournamentForm = new CreateTournamentForm(this);
             createTournamentForm.Show();
             this.Hide();
+        }
+
+        public void returnToDashboard()
+        {
+            this.Show();
+            tournaments = GlobalConfig.Connection.getTournamentAll();
+            refreshData();
         }
     }
 }

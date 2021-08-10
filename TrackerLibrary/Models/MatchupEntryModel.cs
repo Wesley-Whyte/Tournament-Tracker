@@ -27,5 +27,7 @@ namespace TrackerLibrary.Models
         /// To get a value back from the database
         /// </summary>
         public int ParentMatchupid { get; set; }
+
+        public int id { get; set; }
     }
 }

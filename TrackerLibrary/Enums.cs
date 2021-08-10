@@ -10,4 +10,10 @@ namespace TrackerLibrary
         TextFile
     }
 
+    public enum PrizeType
+    {
+        Amount,
+        Percentage
+    }
+
 }

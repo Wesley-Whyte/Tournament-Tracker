@@ -17,11 +17,13 @@ namespace TrackerUI
         private List<TeamModel> availableTeams;
         private List<TeamModel> selectedTeams = new List<TeamModel>();
         private List<PrizeModel> selectedPrizes = new List<PrizeModel>();
+        private IReturnToDashboard dashboard;
 
-        public CreateTournamentForm()
+        public CreateTournamentForm(IReturnToDashboard dash)
         {
             InitializeComponent();
             availableTeams = GlobalConfig.Connection.getTeamAll();
+            dashboard = dash;
             refreshData();
         }
 
@@ -79,21 +81,39 @@ namespace TrackerUI
         private void createTournamentButton_Click(object sender, EventArgs e)
         {
             TournamentModel tour = new TournamentModel();
+            bool isValid;
+            try
+            {
+                isValid = validateTournament();
+            }
+            catch (Exception ex)
+            {
+                isValid = false;
+                MessageBox.Show(ex.Message);
+            }
 
-            if (validateTournament())
+            if (isValid)
             {
                 tour.TournamentName = tournamentNametextBox.Text;
                 tour.EntryFee = Decimal.Parse(entryFeeTextBox.Text);
                 tour.EnteredTeams = selectedTeams;
                 tour.Prizes = selectedPrizes;
+                tour.Active = 1;
+
+                TournamentLogic.createRounds(tour);
+
+                GlobalConfig.Connection.createTournament(tour);
+
+                TournamentViewerForm tournamentViewerForm = new TournamentViewerForm(tour, dashboard);
+                tournamentViewerForm.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Invalid form");
             }
 
-            TournamentLogic.createRounds(tour);
-
-            GlobalConfig.Connection.createTournament(tour);
-
-            TournamentViewerForm tournamentViewerForm = new TournamentViewerForm(tour);
-            this.Close();
+            
 
         }
 
@@ -112,6 +132,14 @@ namespace TrackerUI
                 {
                     output = false;
                 }
+            }
+            else
+            {
+                output = false;
+            }
+            if (selectedTeams.Count < 2)
+            {
+                throw new Exception("Tournaments need at least two teams");
             }
 
             return output;

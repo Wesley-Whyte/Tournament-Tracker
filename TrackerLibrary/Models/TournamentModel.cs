@@ -6,9 +6,27 @@ namespace TrackerLibrary.Models
 {
     public class TournamentModel
     {
+
+        public event EventHandler<DateTime> OnTournamentComplete;
         /// <summary>
         /// The name of the tournament
         /// </summary>
+        public uint Active { get; set; }
+
+        public string TournamentDisplay 
+        { 
+            get
+            {
+                if (Active == 1)
+                {
+                    return $"{TournamentName}(ongoing)";
+                }
+                else
+                {
+                    return $"{TournamentName}(complete)";
+                }
+            }
+        }
         public string TournamentName { get; set; }
         /// <summary>
         /// Represents entryfee if any
@@ -35,6 +53,11 @@ namespace TrackerLibrary.Models
             EnteredTeams = new List<TeamModel>();
             Prizes = new List<PrizeModel>();
             Rounds = new List<List<MatchupModel>>();
+        }
+
+        public void completeTournament()
+        {
+            OnTournamentComplete?.Invoke(this, DateTime.Now);
         }
     }
 }

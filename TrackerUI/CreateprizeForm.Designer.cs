@@ -89,7 +89,7 @@
             this.prizeAmountTextBox.Name = "prizeAmountTextBox";
             this.prizeAmountTextBox.Size = new System.Drawing.Size(226, 43);
             this.prizeAmountTextBox.TabIndex = 7;
-            this.prizeAmountTextBox.Text = "0";
+            this.prizeAmountTextBox.TextChanged += new System.EventHandler(this.prizeAmountTextBox_TextChanged);
             // 
             // prizeAmountLabel
             // 
@@ -106,7 +106,7 @@
             this.prizePercentageTextBox.Name = "prizePercentageTextBox";
             this.prizePercentageTextBox.Size = new System.Drawing.Size(226, 43);
             this.prizePercentageTextBox.TabIndex = 9;
-            this.prizePercentageTextBox.Text = "0";
+            this.prizePercentageTextBox.TextChanged += new System.EventHandler(this.prizePercentageTextBox_TextChanged);
             // 
             // prizePercentageLabel
             // 

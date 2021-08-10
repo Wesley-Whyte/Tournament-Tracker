@@ -255,6 +255,7 @@ namespace TrackerLibrary.DataAccess
 
                     foreach (MatchupModel matchup in matchups)
                     {
+                        matchup.Winner = tournament.EnteredTeams.Find(x => x.id == matchup.Winnerid);
                         p = new DynamicParameters();
                         p.Add("@Matchupid", matchup.id);
 
@@ -286,6 +287,53 @@ namespace TrackerLibrary.DataAccess
             }
             return output;
 
+        }
+
+        public void updateMatchupEntry(MatchupEntryModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournaments")))
+            {
+                var p = new DynamicParameters();
+                p.Add("@id", model.id);
+                p.Add("@TeamCompetingid", model.TeamCompetingid);
+
+                connection.Execute("dbo.spMatchupEntries_update", p, commandType: CommandType.StoredProcedure);
+
+            }
+        }
+
+        public void updateMatchup(MatchupModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournaments")))
+            {
+                var p = new DynamicParameters();
+                p.Add("@id", model.id);
+                p.Add("@Winnerid", model.Winnerid);
+
+                connection.Execute("dbo.spMatchup_Update", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void updateMatchupEntryScore(MatchupEntryModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournaments")))
+            {
+                var p = new DynamicParameters();
+                p.Add("@id", model.id);
+                p.Add("@Score", model.Score);
+                connection.Execute("dbo.spMatchupEntriesScore_update", p, commandType: CommandType.StoredProcedure); 
+            }
+        }
+
+        public void updateTournament(TournamentModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournaments")))
+            {
+                var p = new DynamicParameters();
+                p.Add("@id", model.id);
+
+                connection.Execute("dbo.spTournaments_update", p, commandType: CommandType.StoredProcedure);
+            }
         }
     }
 }

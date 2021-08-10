@@ -50,5 +50,25 @@ namespace TrackerLibrary.DataAccess
         {
             throw new NotImplementedException();
         }
+
+        public void updateMatchupEntry(MatchupEntryModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void updateMatchup(MatchupModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void updateMatchupEntryScore(MatchupEntryModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void updateTournament(TournamentModel model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
