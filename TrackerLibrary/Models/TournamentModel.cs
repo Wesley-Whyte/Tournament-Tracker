@@ -11,7 +11,7 @@ namespace TrackerLibrary.Models
         /// <summary>
         /// The name of the tournament
         /// </summary>
-        public uint Active { get; set; }
+        public int Active { get; set; }
 
         public string TournamentDisplay 
         { 

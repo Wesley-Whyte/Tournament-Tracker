@@ -19,6 +19,13 @@ namespace TrackerUI
         private List<PrizeModel> selectedPrizes = new List<PrizeModel>();
         private IReturnToDashboard dashboard;
 
+        public CreateTournamentForm()
+        {
+            InitializeComponent();
+            availableTeams = GlobalConfig.Connection.getTeamAll();
+            refreshData();
+        }
+
         public CreateTournamentForm(IReturnToDashboard dash)
         {
             InitializeComponent();
@@ -106,7 +113,7 @@ namespace TrackerUI
 
                 TournamentViewerForm tournamentViewerForm = new TournamentViewerForm(tour, dashboard);
                 tournamentViewerForm.Show();
-                this.Close();
+                this.Hide();
             }
             else
             {

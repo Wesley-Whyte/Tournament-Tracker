@@ -18,6 +18,20 @@ namespace TrackerUI
         private List<PersonModel> selectedPeople = new List<PersonModel>();
         ITeamRequester callingForm;
 
+        public CreateTeamForm()
+        {
+            InitializeComponent();
+            availablePeople = GlobalConfig.Connection.getPeopleAll();
+            //sampleData();
+
+            selectMemberComboBox.DataSource = availablePeople;
+            selectMemberComboBox.DisplayMember = "FullName";
+
+            teamMembersListBox.DataSource = selectedPeople;
+            teamMembersListBox.DisplayMember = "FullName";
+
+        }
+
         public CreateTeamForm(ITeamRequester caller)
         {
             InitializeComponent();

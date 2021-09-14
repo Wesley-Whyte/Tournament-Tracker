@@ -125,7 +125,7 @@ namespace TrackerUI
                     prizeType = PrizeType.Amount;
                 }
 
-                if (!isPrizePercentageValid)
+                if (isPrizePercentageValid)
                 {
                     prizeType = PrizeType.Percentage;
                 }

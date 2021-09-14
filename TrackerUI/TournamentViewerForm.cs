@@ -66,7 +66,7 @@ namespace TrackerUI
 
             roundComboBox.DataSource = Rounds;
             currRound = (int)roundComboBox.SelectedItem;
-            tournament.sortOutByes();
+             tournament.sortOutByes();
             refreshMatchupListBox();
             currMatchup = (MatchupModel)matchupListBox.SelectedItem;
 

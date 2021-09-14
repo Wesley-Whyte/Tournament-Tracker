@@ -24,7 +24,7 @@ namespace TrackerLibrary
             //create other rounds
             createOtherRounds(model, roundsNum);
         }
-
+        // Todo- sort prizes out
         public static decimal calculatePrizes(this TournamentModel model, PrizeModel prize)
         {
             decimal totalIncome = model.EnteredTeams.Count * model.EntryFee;
@@ -51,7 +51,7 @@ namespace TrackerLibrary
                 if (matchup.Entries.Count < 2)
                 {
                     matchup.Winner = matchup.Entries[0].TeamCompeting;
-                    matchup.Winnerid = matchup.Entries[0].TeamCompetingid;  
+                    matchup.Winnerid = matchup.Entries[0].TeamCompeting.id;  
                     GlobalConfig.Connection.updateMatchup(matchup);
                     if (model.Rounds.Count != 1)
                     {

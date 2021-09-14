@@ -14,7 +14,7 @@ namespace TrackerLibrary.Models
 
         }
         /// <summary>
-        /// Creates a prize model with properties initialized by parameters
+        /// Creates a prize model with properties initialized by parameters 
         /// </summary>
         /// <param name="number"></param>
         /// <param name="name"></param>
